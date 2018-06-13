@@ -4,6 +4,18 @@ const app = express();
 var Sentiment = require('sentiment');
 var sentiment = new Sentiment();
 const fs = require('fs');
+var mongoose = require('mongoose');
+mongoose.connect(process.env.MONGODB_URI);
+
+if (process.env.MONGODB_URI) {
+    //connect to Mongo DB
+    var db = mongoose.connection;
+    db.on('error', console.error.bind(console, 'connection error:'));
+    db.once('open', function() {
+      // we're connected!
+      console.log("connected to Mongo DB")
+    });
+}
 
 app.use(express.static(__dirname + '/public'));
 
@@ -13,11 +25,11 @@ const server = app.listen(process.env.PORT || 8080, () => {
 
 const io = require('socket.io')(server);
 io.on('connection', function(socket){
-  console.log('a user connected');
+    console.log('a user connected');
 });
 
 app.get('/', (req, res) => {
-  res.sendFile('index.html');
+    res.sendFile('index.html');
 });
 
 io.on('connection', function(socket) {
@@ -48,4 +60,3 @@ io.on('connection', function(socket) {
         socket.emit('score', result.score);
   });
 });
-

@@ -1,7 +1,27 @@
-body {
-  padding-top: 5rem;
-}
 .template {
   padding: 3rem 1.5rem;
-  text-align: center;
+  text-align: left;
+}
+.button {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+.result {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+.footer {
+    text-align: center;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  font-size: 0.9rem;
+  line-height: 60px;
+  height: 60px; /* Set the fixed height of the footer here */
+  background-color: #fff;
+  margin-top: 60px;
+  border-top: 1px solid #e9ecef;
+}
+.text-muted {
+    color: #6c757d!important;
 }

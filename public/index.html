@@ -4,30 +4,57 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        <link rel="icon" href="favicon.png">
     
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+        
+        <!-- Custom CSS -->
         <link href="style.css" rel="stylesheet">
     
-        <title>Hello, world!</title>
+        <title>Suomen kielen tunnetila-analysoija</title>
     </head>
     <body>
         <main role="main" class="container">
             <div class="template">
-                <h1>Finnish language sentiment analyzer</h1>
-                <p>Analysoi suomen kielisen tekstin tunnetila syöttämällä teksti alle ja paina "Analysoi".</p>
+                <div class="container">
+                    <h1>Suomen kielen tunnetila-analysoija </h1>
+                    <h2><i>(sentiment analysis)</i></h2>
+                    <br>
+                    <p class="lead">Tämä sovellus perustuu <a href="http:">Sentiment-ohjelmaan</a> <i>(Sliwinski 2016)</i> ja käyttää AFINN-165-sanalistaa tekstianalyysin tekemiseen.</p>
+                    <p class="lead">Syötä analysoitava suomenkielinen teksti. Sovellus antaa tunnetila-arvion sekä tunnetilan vahvuudesta kertovan pisteytyksen.</p>
+                    <form action="">
+                        <input id="m" type="text" autocomplete="off" value="" class="form-control"/>
+                        <button type="submit" class="btn btn-primary button">Analysoi</button> 
+                    </form>
+                </div>
                 
-                <form action="">
-                    <input id="m" type="text" autocomplete="off" value="" placeholder="Teksi tähän" class="form-control"/>
-                    <button>Analysoi</button>
-                </form>
-                
-                <div id="mood"></div>
-      
-                <div id="score"></div>
+                <ul class="list-group result">
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-1">Tunnetila: </div>
+                            <div id="mood" class="col-11"></div>
+                        </div>
+                    </li>
+                  <li class="list-group-item">
+                      <div class="row">
+                            <div class="col-1">Pisteytys: </div>
+                            <div id="score" class="col-11"></div>
+                        </div>
+                  </li>
+                </ul>
                 
             </div>
         </main>
+        
+        <footer class="footer">
+          <div class="container">
+            <span class="text-muted">
+                Privacy notice: this web pages saves all submitted texts to it's database in order to improve the text analysis performance.
+                © 2018 Kimmo Ihanus <a href="https://twitter.com/ihmissuti">@ihmissuti</a> | <a href="https://github.com/ihmissuti">Github</a></span>
+          </div>
+        </footer>
 
         <script src="/socket.io/socket.io.js"></script>
         <script src="js/script.js"></script>
