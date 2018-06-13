@@ -1,0 +1,15 @@
+{
+  "name": "fi-language-sentiment-analysis",
+  "version": "1.0.0",
+  "description": "Sentiment analysis for Finnish language",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Kimmo Ihanus",
+  "license": "ISC",
+  "dependencies": {
+    "sentiment": "^5.0.0"
+  }
+}
