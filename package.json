@@ -10,6 +10,9 @@
   "author": "Kimmo Ihanus",
   "license": "ISC",
   "dependencies": {
-    "sentiment": "^5.0.0"
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "sentiment": "^5.0.0",
+    "socket.io": "^2.1.1"
   }
 }
