@@ -8,6 +8,12 @@ var mongoose = require('mongoose');
 var moment = require('moment');
 mongoose.connect(process.env.MONGODB_URI);
 
+// grab the Mixpanel factory
+var Mixpanel = require('mixpanel');
+ 
+// create an instance of the mixpanel client
+var mixpanel = Mixpanel.init(process.env.MIXPANEL_TOKEN);
+
 var now = moment().format('DD-MM-YYYY');
 
 if (process.env.MONGODB_URI) {
@@ -62,6 +68,10 @@ app.get('/', (req, res) => {
 
 io.on('connection', function(socket) {
     
+    mixpanel.track('page view', {
+        distinct_id: socket.id
+    });
+    
     socket.on('message', (text) => {
         console.log(text)
         
@@ -111,6 +121,13 @@ io.on('connection', function(socket) {
                           })
                         
                     }
+                    
+                    mixpanel.track('text analysis', {
+                        text: text,
+                        sentiment: moodEn,
+                        score: result.score,
+                        distinct_id: socket.id
+                    });
                     
                    
                 }

@@ -12,6 +12,7 @@
   "dependencies": {
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
+    "mixpanel": "^0.9.2",
     "moment": "^2.22.2",
     "mongoose": "^5.1.5",
     "sentiment": "^5.0.0",
