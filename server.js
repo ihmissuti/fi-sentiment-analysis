@@ -46,7 +46,6 @@ if (process.env.MONGODB_URI) {
         labels: Object
     })
     
-    
     var inputStorage = mongoose.model('sentiment', sentimentSchema);
     var labelsStorage = mongoose.model('label', labelsSchema);
 }
