@@ -1,5 +1,5 @@
 .template {
-  padding: 3rem 1.5rem;
+  padding-top: 1.5rem;
   text-align: left;
 }
 .button {
@@ -24,4 +24,10 @@
 }
 .text-muted {
     color: #6c757d!important;
+}
+
+@media (max-width: 522px) {
+body{
+    font-size: 0.8rem;
+}
 }
