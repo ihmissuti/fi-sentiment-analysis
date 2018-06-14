@@ -2932,6 +2932,11 @@
   "kiitos": 2,
   "herkkä": -2,
   "huomaavainen": 2,
+  "kiihkeä": 2,
+  "kiva": 3,
+  "rakastan": 5,
+  "vihaan": -4,
+  "kyrpä": -3,
   "ajaton": -2,
   "uhka": -2,
   "uhkaa": -2,
@@ -3291,10 +3296,5 @@
    "yucky": -2,
    "yummy": 3,
    "zealot": -2,
-   "zealots": -2,
-   "kiihkeä": 2,
-   "kiva": 3,
-   "rakastan": 5,
-   "vihaan": -4,
-   "kyrpä": -3
+   "zealots": -2
 }
