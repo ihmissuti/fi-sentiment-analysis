@@ -93,19 +93,33 @@ io.on('connection', function(socket) {
                     var result = sentiment.analyze(text, { language: 'fi' });
                     console.dir(result);
                     
-                    if (result.score > 0) {
-                        var mood = "positiivinen"
-                        var moodEn = "positive"
-                    } else if  (result.score < 0) {
-                        var mood = "negatiivinen"
-                        var moodEn = "negative"
+                    var score = result.score
+                    
+                    if (text == 'Ei hyvä' || text == 'ei hyvä' || text == 'Joo ei' || text == 'joo ei') {
+                        var mood = "negatiivinen";
+                        var moodEn = "negative";
+                        var score = -1;
+                    } else if (text == 'ei huono' || text == 'Ei huono') {
+                        var mood = "positiivinen";
+                        var moodEn = "positive";
+                        var score = 1;
+                        
                     } else {
-                        var mood = "neutraali"
-                        var moodEn = "neutral"
+                    
+                        if (result.score > 0) {
+                            var mood = "positiivinen"
+                            var moodEn = "positive"
+                        } else if  (result.score < 0) {
+                            var mood = "negatiivinen"
+                            var moodEn = "negative"
+                        } else {
+                            var mood = "neutraali"
+                            var moodEn = "neutral"
+                        }
                     }
                     
                     socket.emit('mood', mood);
-                    socket.emit('score', result.score);
+                    socket.emit('score', score);
                     
                     if (process.env.MONGODB_URI) {
                         var labelsArrays = {"text": text, "sentiment": moodEn, "score": result.score, "processed": 0};
