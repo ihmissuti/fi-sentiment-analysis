@@ -8,12 +8,6 @@ var mongoose = require('mongoose');
 var moment = require('moment');
 mongoose.connect(process.env.MONGODB_URI);
 
-// grab the Mixpanel factory
-var Mixpanel = require('mixpanel');
- 
-// create an instance of the mixpanel client
-var mixpanel = Mixpanel.init(process.env.MIXPANEL_TOKEN);
-
 var now = moment().format('DD-MM-YYYY');
 
 if (process.env.MONGODB_URI) {
@@ -66,11 +60,7 @@ app.get('/', (req, res) => {
 });
 
 io.on('connection', function(socket) {
-    
-    mixpanel.track('page view', {
-        distinct_id: socket.id
-    });
-    
+
     socket.on('message', (text) => {
         console.log(text)
         
@@ -91,7 +81,7 @@ io.on('connection', function(socket) {
                     sentiment.registerLanguage('fi', fiLanguage);
                     
                     var result = sentiment.analyze(text, { language: 'fi' });
-                    console.dir(result);
+                    // console.dir(result);
                     
                     var score = result.score
                     
@@ -118,8 +108,18 @@ io.on('connection', function(socket) {
                         }
                     }
                     
+                    console.log(result)
+
+                    
                     socket.emit('mood', mood);
-                    socket.emit('score', score);
+                    socket.emit('score', result.score);
+                    
+                    var positiveShare = ((result.positive.length/result.tokens.length)*100).toFixed(2) + " % (" + result.positive + ")"
+                    var negativeShare = ((result.negative.length/result.tokens.length)*100).toFixed(2) + " % (" + result.negative + ")"
+                    
+                    socket.emit('positive', positiveShare);
+                    socket.emit('negative', negativeShare);
+
                     
                     if (process.env.MONGODB_URI) {
                         var labelsArrays = {"text": text, "sentiment": moodEn, "score": result.score, "processed": 0};
@@ -128,21 +128,13 @@ io.on('connection', function(socket) {
                               console.log(error)
                             }
                             
-                            console.log("DB unknown update:")
-                            console.log(res)
+                            // console.log("DB unknown update:")
+                            // console.log(res)
                     
                           })
                         
                     }
                     
-                    mixpanel.track('text analysis', {
-                        text: text,
-                        sentiment: moodEn,
-                        score: result.score,
-                        distinct_id: socket.id
-                    });
-                    
-                   
                 }
             })
         
@@ -159,7 +151,7 @@ io.on('connection', function(socket) {
             sentiment.registerLanguage('fi', fiLanguage);
                     
             var result = sentiment.analyze(text, { language: 'fi' });
-            console.dir(result);
+            // console.dir(result);
                     
             if (result.score > 0) {
                 var mood = "positiivinen"
@@ -171,9 +163,13 @@ io.on('connection', function(socket) {
                 var mood = "neutraali"
                 var moodEn = "neutral"
             }
-                    
+            
+            console.log(result)
+            socket.emit('tokens', result.tokens);     
             socket.emit('mood', mood);
             socket.emit('score', result.score);
+            socket.emit('positive', result.score);
+            socket.emit('negative', result.score);
         }
 
 

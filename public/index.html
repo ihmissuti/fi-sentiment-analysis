@@ -30,17 +30,29 @@
                 
                 <ul class="list-group result">
                     <li class="list-group-item">
+                      <div class="row">
+                            <div class="col-3">Sentimenttiarvo:</div>
+                            <div id="score" class="col-9"></div>
+                        </div>
+                  </li>
+                    <li class="list-group-item">
                         <div class="row">
                             <div class="col-3">Sentimentti: </div>
                             <div id="mood" class="col-9"></div>
                         </div>
                     </li>
-                  <li class="list-group-item">
-                      <div class="row">
-                            <div class="col-3">Pisteytys: </div>
-                            <div id="score" class="col-9"></div>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-3">Positiivisia sanoja: </div>
+                            <div id="positive" class="col-9"></div>
                         </div>
-                  </li>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-3">Negatiivisia sanoja: </div>
+                            <div id="negative" class="col-9"></div>
+                        </div>
+                    </li>
                 </ul>
                 
             </div>
@@ -49,13 +61,11 @@
         <footer class="footer">
           <div class="container">
             <span class="text-muted">
-                Privacy notice: This web page saves all the submitted texts in its database to improve the performance of text analysis.
                 © 2018 Kimmo Ihanus <a href="https://twitter.com/ihmissuti">@ihmissuti</a> | <a href="https://github.com/ihmissuti/fi-sentiment-analysis">Github</a></span>
           </div>
         </footer>
 
         <script src="/socket.io/socket.io.js"></script>
-        <script src="js/script.js"></script>
         <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
         
         <script>
@@ -70,12 +80,20 @@
                 });
               
                 socket.on('mood', function(mood){
-                $("#mood").text(mood);
-              });
-              
-              socket.on('score', function(score){
-                  $("#score").text(score);
-              });
+                    $("#mood").text(mood);
+                 });
+                  
+                socket.on('score', function(score){
+                      $("#score").text(score);
+                });
+                
+                socket.on('positive', function(score){
+                      $("#positive").text(score);
+                });
+                
+                socket.on('negative', function(score){
+                      $("#negative").text(score);
+                });
                 
             });
         </script>
