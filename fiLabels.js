@@ -1,4 +1,4 @@
-{
+module.exports={
   "luopua": -2,
   "hylätty": -2,
   "hylätään": -2,

@@ -13,43 +13,43 @@
         <!-- Custom CSS -->
         <link href="style.css" rel="stylesheet">
     
-        <title>Sentimenttianalyysi</title>
+        <title>Sentiment analyzer for Finnish language</title>
     </head>
     <body>
         <main role="main" class="container">
             <div class="template">
                 <div class="container">
-                    <h1>Sentimenttianalyysi</h1>
+                    <h1>Sentiment analyzer for Finnish language</h1>
                     <br>
-                    <p><a href="https://github.com/thisandagain/sentiment" target="_blank">Sentiment-ohjelmaan</a> <i>(Sliwinski 2016)</i> ja AFINN-165-sanalistaan perustuva tekstianalysoija.</p>
+                    <p><a href="https://github.com/thisandagain/sentiment" target="_blank">Based on Sentiment</a> <i>(Sliwinski 2016)</i> node.js module that uses AFINN-165-wordlist to conduct sentiment analyzis.</p>
                     <form action="">
-                        <input id="m" type="text" autocomplete="off" value="" class="form-control" placeholder="Syötä analysoitava teksti."/>
-                        <button type="submit" class="btn btn-primary button">Analysoi</button> 
+                        <input id="m" type="text" autocomplete="off" value="" class="form-control" placeholder="Insert a Finnish text. Eg. 'Ihana kesä'"/>
+                        <button type="submit" class="btn btn-primary button">Analyze</button> 
                     </form>
                 </div>
                 
                 <ul class="list-group result">
                     <li class="list-group-item">
                       <div class="row">
-                            <div class="col-3">Sentimenttiarvo:</div>
+                            <div class="col-3">Sentiment score:</div>
                             <div id="score" class="col-9"></div>
                         </div>
                   </li>
                     <li class="list-group-item">
                         <div class="row">
-                            <div class="col-3">Sentimentti: </div>
+                            <div class="col-3">Sentiment: </div>
                             <div id="mood" class="col-9"></div>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="row">
-                            <div class="col-3">Positiivisia sanoja: </div>
+                            <div class="col-3">Positive words: </div>
                             <div id="positive" class="col-9"></div>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="row">
-                            <div class="col-3">Negatiivisia sanoja: </div>
+                            <div class="col-3">Negative words: </div>
                             <div id="negative" class="col-9"></div>
                         </div>
                     </li>
